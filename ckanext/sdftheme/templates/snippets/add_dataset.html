@@ -1,0 +1,17 @@
+{# Adds 'Add Dataset' button #}
+
+{% set dataset_type = dataset_type if dataset_type else h.default_package_type() %}
+{% set link_label = h.humanize_entity_type('package', dataset_type, 'add link') or _("Add Dataset") %}
+{% set route_name = dataset_type ~ '.new' %}
+
+{% if group %}
+    <a href="{{ h.url_for(route_name, group=group) }}" class="btn sdf-btn">
+        {{ link_label }}
+        <i class="fa fa-plus"></i>
+    </a>
+{% else %}
+    <a href="{{ h.url_for(route_name) }}" class="btn sdf-btn">
+        {{ link_label }}
+        <i class="fa fa-plus"></i>
+    </a>
+{% endif %}

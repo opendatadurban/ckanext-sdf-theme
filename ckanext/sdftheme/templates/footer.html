@@ -1,0 +1,43 @@
+<footer class="site-footer">
+  <div class="container">
+    {% block footer_content %}
+    <div class="row">
+      <div class="col-md-5 footer-links">
+        {% block footer_nav %}
+        <div style="display: flex; align-items: stretch; height: 100%;">
+          <div class="footer-attribution-group attribution" >
+            {% block footer_links %}
+              <p class="footer-attribution-text">
+                {% trans %}<span style="font-size: x-small; color: white; font-weight: 50;">POWERED BY:</span> <a class="hide-text ckan-footer-logo" href="http://ckan.org">CKAN</a>{% endtrans %}
+              </p>
+            {% endblock %}
+          </div>
+
+          <div class="footer-description">
+            <p class="footer-attribution-text">
+                <span style="color: #F2EDD9;">MzansiXchange</span> is an initiative of <span style="font-weight:600"> National Treasury</span>
+            </p>
+            <a style="text-decoration: underline;"> Creative Common License </a>
+          </div>
+
+            {% block footer_links_ckan %}
+            {% endblock %}
+        </div>
+        {% endblock %}
+      </div>
+
+      <div class="col-md-3" style="font-size: larger; font-weight: lighter;">
+            <p>Tel: 012 315 1000</p>
+      </div>
+
+      <div class="col-md-4">
+        {% block footer_attribution %}
+          <p class="footer-contact"><span style="font-weight: 50;">Email us:</span> <a style="text-decoration: underline;" href="mailto:mzansixchange@treasury.gov.za">mzansixchange@treasury.gov.za</a></p>
+        {% endblock %}
+        {% block footer_lang %}
+        {% endblock %}
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</footer>

@@ -1,0 +1,44 @@
+{% ckan_extends %}
+
+{% block subtitle %}
+
+{% endblock %}
+
+{% block maintag %}{% endblock %}
+{% block toolbar %}{% endblock %}
+
+{% block content %}
+<div class="homepage">
+  <div id="content" class="container">
+    {{ self.flash() }}
+  </div>
+  {% block primary_content %}
+  <div role="main">
+    <div class="main hero">
+      <div class="container">
+        <div class="row">
+            {% block promoted %}
+            {% endblock %}
+
+            {% block search %}
+            {% snippet 'home/snippets/search.html', search_facets=search_facets %}
+            {% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <div class="main module-feeds">
+      <div class="container">
+        <div class="row">
+        {% block featured_group %}
+            {% snippet 'home/snippets/promoted.html' %}
+        {% endblock %}
+        </div>
+        {% block featured_organization %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}

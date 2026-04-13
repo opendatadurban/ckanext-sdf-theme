@@ -1,0 +1,14 @@
+# sdftheme-js:
+#   filter: rjsmin
+#   output: ckanext-sdftheme/%(version)s-sdftheme.js
+#   contents:
+#     - js/sdftheme.js
+#   extra:
+#     preload:
+#       - base/main
+
+# sdftheme-css:
+#   filter: cssrewrite
+#   output: ckanext-sdftheme/%(version)s-sdftheme.css
+#   contents:
+#     - css/sdftheme.css
