@@ -121,3 +121,5 @@ If ckanext-sdftheme should be available on PyPI you can follow these steps to pu
 ## License
 
 [AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html)
+# ckanext-sdf-theme
+A CKAN theme extension for the MzansiXchange metadata catalogue of the NT-SDF data. 
