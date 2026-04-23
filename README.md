@@ -1,125 +1,241 @@
-[![Tests](https://github.com/afia-ocl/ckanext-sdftheme/workflows/Tests/badge.svg?branch=main)](https://github.com/afia-ocl/ckanext-sdftheme/actions)
+# SDF CKAN UI Extension
 
 # ckanext-sdftheme
 
-**TODO:** Put a description of your extension here:  What does it do? What features does it have? Consider including some screenshots or embedding a video!
+A custom CKAN theme extension for the MzansiXchange’s National Treasury-Secure Data Facility’s (NT-SDF) API Catalog. This extension overrides CKAN’s default templates and styles to apply MzansiXchange and NT branding while preserving the necessary functionality.
 
+---
+
+## Features
+
+- Custom colour palette and typography applied via CSS overrides
+- Restyled navbar, hero section, footer, buttons, and dataset listings
+- Toggle pill buttons for View/Edit switching modes on datasets, organisations, and groups
+- Custom homepage layout via `home/index.html` override
+- Compatible with CKAN 2.10
+
+---
 
 ## Requirements
 
-**TODO:** For example, you might want to mention here which versions of CKAN this
-extension works with.
+- CKAN 2.10
 
-If your extension works across different versions you can add the following table:
+### Docker Setup Requirements
 
-Compatibility with core CKAN versions:
+If you are running CKAN via Docker (recommended for local development):
 
-| CKAN version    | Compatible?   |
-| --------------- | ------------- |
-| 2.6 and earlier | not tested    |
-| 2.7             | not tested    |
-| 2.8             | not tested    |
-| 2.9             | not tested    |
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) or Docker Engine 20.10+
+- Docker Compose v2
 
-Suggested values:
-
-* "yes"
-* "not tested" - I can't think of a reason why it wouldn't work
-* "not yet" - there is an intention to get it working
-* "no"
-
+---
 
 ## Installation
 
-**TODO:** Add any additional install steps to the list below.
-   For example installing any non-Python dependencies or adding any required
-   config settings.
+There are two ways to install this extension — using the ckan-docker setup (recommended for local development) or into an existing CKAN virtual environment.
 
-To install ckanext-sdftheme:
+---
 
-1. Activate your CKAN virtual environment, for example:
+### Option 1: Using ckan-docker (Recommended)
 
-     . /usr/lib/ckan/default/bin/activate
+[ckan-docker](https://github.com/ckan/ckan-docker) is the official Docker-based setup for CKAN. It provides all the infrastructure (PostgreSQL, Solr, Redis) needed to run CKAN locally.
 
-2. Clone the source and install it on the virtualenv
+### 1. Clone ckan-docker
 
-    git clone https://github.com/afia-ocl/ckanext-sdftheme.git
-    cd ckanext-sdftheme
-    pip install -e .
-	pip install -r requirements.txt
+```jsx
+git clone https://github.com/ckan/ckan-docker.git
+cd ckan-docker
+```
 
-3. Add `sdftheme` to the `ckan.plugins` setting in your CKAN
-   config file (by default the config file is located at
-   `/etc/ckan/default/ckan.ini`).
+### 2. Clone this extension into the src directory
 
-4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu:
+```jsx
+git clone [https://github.com/YOUR_ORG/ckanext-sdftheme.git src/ckanext-sdftheme](https://github.com/afia-ocl/ckanext-sdf-theme.git)
+```
 
-     sudo service apache2 reload
+### 3. Add the extension to the Dockerfile
 
+In `ckan/Dockerfile.dev`, add the following lines to install the extension at build time:
 
-## Config settings
+```jsx
+COPY src/ckanext-sdftheme /srv/app/src_extensions/ckanext-sdftheme
+RUN pip install -e /srv/app/src_extensions/ckanext-sdftheme
+```
 
-None at present
+### 4. Configure your `.env` file
 
-**TODO:** Document any optional config settings here. For example:
+Copy the sample env file and edit it:
 
-	# The minimum number of hours to wait before re-checking a resource
-	# (optional, default: 24).
-	ckanext.sdftheme.some_setting = some_default_value
+```jsx
+cp .env.example .env
+```
 
+Add `sdftheme` to your plugins list:
 
-## Developer installation
+```jsx
+CKAN__PLUGINS="image_view text_view datatables_view datastore envvars sdftheme"
+```
 
-To install ckanext-sdftheme for development, activate your CKAN virtualenv and
-do:
+### 5. Build and start the containers
 
-    git clone https://github.com/afia-ocl/ckanext-sdftheme.git
-    cd ckanext-sdftheme
-    pip install -e .
-    pip install -r dev-requirements.txt
+```jsx
+docker compose -f docker-compose.dev.yml up --build -d
+```
 
+CKAN will be available at `http://localhost:5000`.
 
-## Tests
+---
 
-To run the tests, do:
+### Option 2: Standard Installation (existing CKAN setup)
 
-    pytest --ckan-ini=test.ini
+### 1. Activate your CKAN virtual environment
 
+```jsx
+. /usr/lib/ckan/default/bin/activate
+```
 
-## Releasing a new version of ckanext-sdftheme
+### 2. Clone and install the extension
 
-If ckanext-sdftheme should be available on PyPI you can follow these steps to publish a new version:
+```jsx
+cd /usr/lib/ckan/default/src
+git clone https://github.com/YOUR_ORG/ckanext-sdftheme.git
+cd ckanext-sdftheme
+pip install -e .
+```
 
-1. Update the version number in the `pyproject.toml` file. See [PEP 440](http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers) for how to choose version numbers.
+### 3. Add to your CKAN plugins
 
-2. Make sure you have the latest version of necessary packages:
+In your `ckan.ini`, add `sdftheme`:
 
-    pip install --upgrade setuptools wheel twine
+```jsx
+ckan.plugins = ... sdftheme
+```
 
-3. Create a source and binary distributions of the new version:
+### 4. Restart CKAN
 
-       python -m build && twine check dist/*
+```jsx
+sudo supervisorctl restart ckan
+```
 
-   Fix any errors you get.
+---
 
-4. Upload the source distribution to PyPI:
+## Configuration
 
-       twine upload dist/*
+The following optional environment variables can be set in your `.env`:
 
-5. Commit any outstanding changes:
+```jsx
+# Site logo — must be a path to a file served from a public directory
+CKAN__SITE_LOGO=/images/your-logo.svg
+```
 
-       git commit -a
-       git push
+Place your logo at:
 
-6. Tag the new release of the project on GitHub with the version number from
-   the `setup.py` file. For example if the version number in `setup.py` is
-   0.0.1 then do:
+```jsx
+ckanext/sdftheme/public/images/your-logo.svg
+```
 
-       git tag 0.0.1
-       git push --tags
+---
 
-## License
+## Project Structure
 
-[AGPL](https://www.gnu.org/licenses/agpl-3.0.en.html)
-# ckanext-sdf-theme
-A CKAN theme extension for the MzansiXchange metadata catalogue of the NT-SDF data. 
+`ckanext-sdftheme/
+├── ckanext/
+│   └── sdftheme/
+│       ├── assets/
+│       │   ├── style.css          # Main stylesheet — edit this to restyle
+│       │   ├── script.js          # Optional JS
+│       │   └── webassets.yml      # Asset registration
+│       ├── public/
+│       │   └── images/            # Static images served at /images/
+│       ├── templates/             # Jinja2 template overrides
+│       │   ├── home/
+│       │   │   └── index.html
+│       │   ├── user/
+│       │   │   └── login.html
+│       │   ├── package/           # Dataset templates
+│       │   ├── organization/      # Organisation templates
+│       │   └── group/             # Group templates
+│       ├── plugin.py              # Extension entry point
+│       └── ...
+├── setup.cfg
+├── setup.py
+└── README.md`
+
+---
+
+## Customising Styles
+
+All visual overrides live in `ckanext/sdftheme/assets/style.css`. The file uses CSS custom properties (variables) defined at the top under `:root` — this is the easiest place to make sweeping changes:
+
+```jsx
+:root {
+  --sdf-lavender-grey : #909cc2;
+  --sdf-ghost-white   : #f7f5fb;
+  --sdf-pine-teal     : #004643;
+  --sdf-dusty-grape   : #52489c;
+  --sdf-old-gold      : #b5b556;
+}
+```
+
+Change these variables to retheme the entire site at once.
+
+---
+
+## Potential Improvements
+
+### Migrate CSS to SCSS
+
+Currently the theme uses a single plain CSS file. A natural improvement would be to migrate to SCSS, which would allow:
+
+- **Variables as SCSS variables** — refactor `:root` CSS variables into `_variables.scss` for easier management and the ability to use them in calculations
+- **Partials** — split the stylesheet into logical files (`_navbar.scss`, `_hero.scss`, `_footer.scss`, etc.) and import them into a single `main.scss`
+- **Nesting** — write cleaner, more readable selectors
+- **Mixins** — reuse common patterns like button styles or responsive breakpoints
+- **`darken()` / `lighten()`** — generate tints and shades of brand colours programmatically
+
+To set this up you would need to:
+
+1. Install Sass: `npm install -g sass` or `brew install sass/sass/sass`
+2. Create a `scss/` directory alongside `assets/`
+3. Write your SCSS source files there
+4. Compile to CSS with:
+
+```jsx
+   sass scss/main.scss ckanext/sdftheme/assets/style.css
+```
+
+1. Add a `package.json` with a watch script for development:
+
+```jsx
+   {
+     "scripts": {
+       "watch": "sass --watch scss/main.scss:ckanext/sdftheme/assets/style.css",
+       "build": "sass scss/main.scss ckanext/sdftheme/assets/style.css --style=compressed"
+     }
+   }
+```
+
+Commit the compiled `style.css` to the repository so that users who clone the extension do not need to run a build step to use it.
+
+### Other Improvements
+
+- **Add i18n support** — translate any hardcoded strings in templates using `{{ _('...') }}`
+- **Dark mode** — add a `@media (prefers-color-scheme: dark)` block using the existing CSS variables
+- **Add a `CHANGES.md`** — track changes between versions as the theme evolves
+- **Automated CSS build in CI** — add a GitHub Actions workflow to compile SCSS and fail if the compiled output is out of date
+
+---
+
+## Development
+
+To work on the theme locally using Docker without rebuilding the image, copy updated files directly into the running container:
+
+```jsx
+# Copy updated CSS
+docker compose -f docker-compose.dev.yml cp \
+  src/ckanext-sdftheme/ckanext/sdftheme/assets/style.css \
+  ckan-dev:/srv/app/src_extensions/ckanext-sdftheme/ckanext/sdftheme/assets/style.css
+```
+
+Then hard-refresh your browser (Cmd+Shift+R on Mac).
+
+To override a template, copy it from CKAN core into the same relative path under `ckanext/sdftheme/templates/` and modify it there. Never edit CKAN core files directly.

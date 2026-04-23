@@ -1,0 +1,33 @@
+<div class="landing-box">
+  <div>
+    <h1 class="page-heading landing-heading">{{ _("Data Catalogues") }}</h1>
+  </div>
+
+  <div class="catalogue-grid"> 
+    <!-- Regular box -->
+     <a href="{{ h.url_for('dataset.search') }}" title="{{ _("View Data Catalogue") }}"> 
+        <div class="data-catalogue-box">
+      <img src="{{ h.url_for_static('/images/national-treasury-logo.svg') }}" alt="National Treasury logo" class="data-catalogue-logo">
+      <h3>National Treasury Secure Data Facility (NT-SDF)</h3>
+      <p>Provides researchers with de-identified tax data for research.</p>
+    </div>
+     </a>
+    
+    <!-- Coming soon box: tag positioned absolutely -->
+    <div class="data-catalogue-box coming-soon">
+      <span class="coming-soon-tag">Coming Soon</span>
+      <img src="{{ h.url_for_static('/images/national-treasury-logo.svg') }}" alt="National Treasury logo" class="data-catalogue-logo">
+      <h3>Spatial Economic Activity Data, South Africa (SEAD-SA)</h3>
+      <p>Provides researchers with de-identified tax data for research.</p>
+    </div>
+  </div>
+
+  <!-- Contributing partners -->
+  <div class="partners-section">
+    <h1>An initiative of National Treasury contributing to MyMzansi</h1>
+    <div> 
+      <img src="{{ h.url_for_static('/images/national-treasury-logo.svg') }}" alt="National Treasury logo" class="partner-logo">
+      <img src="{{ h.url_for_static('/images/mymzansi-logo.svg') }}" alt="MyMzansi logo" class="partner-logo">
+    </div>
+  </div>
+</div>

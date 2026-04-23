@@ -73,14 +73,15 @@
 
       {% block header_logo %}
       {% if g.site_logo %}
+      {# Use logo from env variable #}
       <a class="logo" href="{{ h.url_for('home.index') }}">
-        <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}"
-          title="{{ g.site_title }}" />
+        <img src="{{ g.site_logo }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
       </a>
       {% else %}
-      <h1>
-        <a href="{{ h.url_for('home.index') }}">{{ g.site_title }}</a>
-      </h1>
+      {# Fallback to default logo #}
+        <a class="logo" href="{{ h.url_for('home.index') }}"> 
+          <img src="/images/mx-logo.svg" style="height: 40px;" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
+        </a>
       {% if g.site_description %}
       <h2>{{ g.site_description }}</h2>
       {% endif %}
@@ -103,7 +104,7 @@
               {{ h.build_nav_main(
                 (dataset_type ~ '.search', h.humanize_entity_type('package', dataset_type, 'main nav') or _('Datasets'), ["dataset", "resource"]),
                 (org_type ~ '.index',
-                  h.humanize_entity_type('organization', org_type, 'main nav') or _('Organizations'), ['organization']),
+                  h.humanize_entity_type('organization', org_type, 'main nav') or _('Organisations'), ['organization']),
                 (group_type ~ '.index',
                   h.humanize_entity_type('group', group_type, 'main nav') or _('Groups'), ['group']),
                 ('home.about', _('About')) ) }}

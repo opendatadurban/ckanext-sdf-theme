@@ -1,0 +1,30 @@
+{% set current_url = h.full_current_url() %}
+
+{# Find email in extras #}
+{% set org_email = namespace(value=None) %}
+{% if organization and organization.extras %}
+  {% for extra in organization.extras %}
+    {% if extra.key == 'email' %}
+      {% set org_email.value = extra.value %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% block social %}
+  <section class="module module-narrow social">
+    {% block social_title %}
+      <h2 class="module-heading"><i class="fas fas fa-envelope"></i> {{ _('Contact Us') }}</h2>
+    {% endblock %}
+    {% block social_nav %}
+      <ul class="nav nav-simple">
+        {% if org_email.value %}
+          <li class="nav-item">
+            <a href="mailto:{{ org_email.value }}">
+             {{ organization.title or organization.name }} Team
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endblock %}
+  </section>
+{% endblock %}

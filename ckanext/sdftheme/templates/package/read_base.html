@@ -19,7 +19,6 @@
        class="sdf-toggle-pill__btn sdf-toggle-pill__btn--active">
       {{ h.humanize_entity_type('package', pkg.type, 'view label') or _('View') }}
     </a>
-    
     <a href="{{ h.url_for(pkg.type ~ '.edit', id=pkg.name) }}" 
        class="sdf-toggle-pill__btn">
       {{ _('Edit') }}
@@ -38,7 +37,7 @@
   {% block secondary_help_content %}{% endblock %}
 
   {% block package_info %}
-    {% snippet 'package/snippets/info.html', pkg=pkg, am_following=am_following %}
+
   {% endblock %}
 
   {% block package_organization %}
@@ -49,11 +48,13 @@
   {% endblock %}
 
   {% block package_social %}
-    {% snippet "snippets/social.html" %}
+    {% if pkg.organization %}
+      {% set org = h.get_organization(pkg.organization.id) %}
+      {% snippet "snippets/social.html", organization=org %}
+    {% endif %}
   {% endblock %}
 
   {% block package_license %}
-    {% snippet "snippets/license.html", pkg_dict=pkg %}
   {% endblock %}
 
 {% endblock %}

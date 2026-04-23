@@ -5,54 +5,10 @@
       <h1 class="page-heading" style="font-size: 17px; font-weight: 700; padding: 0px 50px 15px;">{{ _("Latest Datasets") }}</h1>
   </div>
 
-  <div class="dataset-box">
-    {% for dataset in latest_datasets.results %}
-    <div class="dataset-item">
-      <a href="{{ h.url_for('dataset.read', id=dataset.name) }}">
-        {{ dataset.title or dataset.name }}
-      </a>
-      {% if dataset.notes %}
-        <p>{{ dataset.notes | truncate(200) }}</p>
-      {% endif %}
+  {% block package_search_results_list %}
+      {% snippet 'snippets/package_list.html', packages=latest_datasets.results %}
+  {% endblock %}
 
-      <div class="dataset-meta">
-        <div class="dataset-tags">
-        {# Collect and display unique format tags #}
-        {% if dataset.resources and dataset.resources|length > 0 %}
-            {% set ns = namespace(formats=[]) %}
-            {% for resource in dataset.resources %}
-                {% if resource.format and resource.format not in ns.formats %}
-                    <span class="tag tag-format">
-                        <i class="fa fa-file"></i> {{ resource.format }}
-                    </span>
-                    {% set ns.formats = ns.formats + [resource.format] %}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-
-        {% if dataset.private %}
-            <span class="tag tag-private">
-              <i class="fa fa-lock"></i> Private
-            </span>
-        {% else %}
-            <span class="tag tag-public">
-              <i class="fa fa-globe"></i> Public
-            </span>
-        {% endif %}
-        </div>
-
-        <div class="dataset-dates">
-        <small>
-            Updated {{ h.render_datetime(dataset.metadata_modified, date_format='%d %b %Y') }} 
-            &nbsp;|&nbsp;
-            Created {{ h.render_datetime(dataset.metadata_created, date_format='%d %b %Y') }}
-        </small>
-        </div>
-    </div>
-      
-    </div>
-    {% endfor %}
-  </div>
   {% block home_image %}
   {% endblock %}
 </div>

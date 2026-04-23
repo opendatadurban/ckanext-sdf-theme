@@ -21,7 +21,7 @@
             {% endblock %}
 
             {% block search %}
-            {% snippet 'home/snippets/search.html', search_facets=search_facets %}
+            {% snippet 'home/snippets/hero.html' %}
             {% endblock %}
         </div>
       </div>
@@ -31,7 +31,7 @@
       <div class="container">
         <div class="row">
         {% block featured_group %}
-            {% snippet 'home/snippets/promoted.html' %}
+            {% snippet 'home/snippets/landing-index.html' %}
         {% endblock %}
         </div>
         {% block featured_organization %}

@@ -28,6 +28,10 @@ class SdfthemePlugin(plugins.SingletonPlugin):
         return {
             'get_latest_datasets': get_latest_datasets
         }
+
+    def organization_facets(self, facets_dict, organization_type, package_type):
+        facets_dict.pop('organizations', None)
+        return facets_dict
     
     # IAuthFunctions
 

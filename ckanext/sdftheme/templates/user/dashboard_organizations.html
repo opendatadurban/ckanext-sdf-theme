@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block primary_content_inner %}
-  <h2 class="hide-heading">{{ h.humanize_entity_type('organization', org_type, 'my label') or _('My Organizations') }}</h2>
+  <h2 class="hide-heading">{{ h.humanize_entity_type('organization', org_type, 'my label') or _('My Organisations') }}</h2>
   {% set organizations = h.organizations_available(permission='manage_group',
     include_dataset_count=True,
     include_member_count=True) %}
@@ -25,7 +25,7 @@
     </div>
   {% else %}
     <p class="empty">
-      {{ h.humanize_entity_type('organization', org_type, 'you not member') or _('You are not a member of any organizations.') }}
+      {{ h.humanize_entity_type('organization', org_type, 'you not member') or _('You are not a member of any organisations.') }}
       {% if h.check_access('organization_create') %}
         {% link_for _('Create one now?'), named_route=org_type ~ '.new' %}
       {% endif %}
