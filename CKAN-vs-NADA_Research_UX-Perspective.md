@@ -218,7 +218,7 @@ The following recommendations are bing made after reviewing both tools in relati
 NADA is an attractive modern catalog system that has add on functionality that allows users to build templates.
 HOWEVER it is maintained by one person. This is a high risk consideration and is partly evident in the tool itself: Some help features did not work, some system nav functions were broken and directed to the incorrect places etc.
 
-CKAN, while the native UI is seemingly "old fashioned" the system is a solid, trusted DMS in the space. As it stands, it does not have a flexible user interface editor HOWEVER it is highly flexible in terms of its API connectivity and ability to serve as a database instead of an interface. This gives us a massive range of options in temrs of how metadata and resources are served to our users.
+CKAN, while the native UI is seemingly "old fashioned" the system is a solid, trusted DMS in the space. As it stands, it does not have a flexible user interface editor HOWEVER it is highly flexible in terms of its API connectivity and ability to serve as a database instead of an interface. This gives us a massive range of options in terms of how metadata and resources are served to our users.
 It is also able to connect to WorldBank Metadata Editor via a custom API allowing us to potentially tap into the good conventions utilised there.
 
 Our recommendation for this implementation is to use CKAN as a back end system and build a front end UI that truly matches our user requirements.
