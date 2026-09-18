@@ -213,7 +213,7 @@ Bottom line: The Metadata Editor is built to feed NADA specifically. Getting met
 </details>
 
 ## Summary
-The following recommendations are bing made after reviewing both tools in relation to their appropriateness for the NT-SDF project and CivicView.
+The following recommendations are put forward after reviewing both tools in relation to their appropriateness for the NT-SDF project and CivicView.
 
 NADA is an attractive modern catalog system that has add on functionality that allows users to build templates.
 HOWEVER it is maintained by one person. This is a high risk consideration and is partly evident in the tool itself: Some help features did not work, some system nav functions were broken and directed to the incorrect places etc.
