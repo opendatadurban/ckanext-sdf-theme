@@ -1,4 +1,4 @@
-# NT-SDF Research - CKAN vs NADA
+# NT-SDF Research - CKAN vs NADA (UX Perspective)
 
 ## Task
 Run a review comparing [NADA](https://microdata.worldbank.org/home) to [CKAN](https://datasets.edge.durban/dataset/)
