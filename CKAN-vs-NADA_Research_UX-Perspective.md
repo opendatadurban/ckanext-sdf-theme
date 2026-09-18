@@ -113,7 +113,7 @@ Users need to build and maintain custom templates that describe a range of metad
 Deeper research was conducted to better understand what is possible across NADA and CKAN with regards to template creation and curation.
 
 Research:
-## <details open>
+<details open>
   <summary>NADA Metadata Template Creation and Editing</summary>  
 I asked Claude if NADA had reasonable metadata template creation and editing capability.
 
@@ -142,7 +142,7 @@ The admin web UI section reinforces this — it's organized around site operatio
 Bottom line: NADA is fundamentally a cataloging and publishing tool, not a metadata-editing tool. Its own docs steer administrators toward external specialized editors (Nesstar Publisher, World Bank Metadata Editor) or scripting via R/Python + API for anything beyond trivial datasets, and explicitly flag the built-in web editor as incomplete and not the preferred route — especially for microdata.
 </details>
 
-## <details open>
+<details open>
   <summary>CKAN Metadata Template Creation and Editing</summary>
 I also asked Claude if CKAN had reasonable metadata template creation and editing capability.
 
@@ -164,14 +164,14 @@ Even something as small as changing the sort options on the search page requires
 The docs themselves acknowledge the manual complexity by pointing to a third-party extension, ckanext-scheming, as an alternative — this lets you define a metadata schema in a YAML or JSON file instead of raw Python, with custom validation and snippets. But this isn't core CKAN; it's an unofficial community extension you'd need to separately install, and the core docs don't walk through it.
 
 Bottom line — comparing all three tools:
-ToolMetadata template editingNADABuilt-in UI editor exists but is explicitly discouraged by its own docs, especially for microdata; recommends external tools insteadWorld Bank Metadata EditorPurpose-built Template Manager with a visual navigation tree, duplicate/export/import/preview, role-gated — genuinely easy, first-class featureCKANNo admin UI at all for this; requires writing a Python plugin, overriding schema functions, hand-coding validators, and manually editing HTML templates — this is developer/sysadmin work, not something a data curator does.
+ToolMetadata template editingNADABuilt-in UI editor exists but is explicitly discouraged by its own docs, especially for microdata; recommends external tools instead World Bank Metadata EditorPurpose-built Template Manager with a visual navigation tree, duplicate/export/import/preview, role-gated — genuinely easy, first-class feature CKAN No admin UI at all for this; requires writing a Python plugin, overriding schema functions, hand-coding validators, and manually editing HTML templates — this is developer/sysadmin work, not something a data curator does.
 
 So CKAN sits at the opposite end from the Metadata Editor: powerful and flexible if you're a developer, but nowhere close to "easy" for a non-technical user trying to create or adjust a metadata template.
 </details>
 
-## <details open>
+<details open>
   <summary>NADA and WorldBank Metadata Editor</summary>
-  I then asked Claude if the WorldBank Metadata Editor could be considered a suitable way to build and edit metadata upstream from NADA.
+I then asked Claude if the WorldBank Metadata Editor could be considered a suitable way to build and edit metadata upstream from NADA.
 
 Research response from Claude:
 
@@ -190,9 +190,9 @@ Bottom line: where NADA's own docs actively discourage using its built-in editor
 This tool is the one referenced earlier as the "specialized metadata editor" NADA recommends using upstream — and template creation/editing is clearly central to its design, not an afterthought.
 </details>
 
-## <details open>
-  <summary>CKAN and WorldBank Metadata Editor </summary>
-  I finally asked Claude if it was possible to feed-in or integrate CKAN & WorldBank Metadata Editor.
+<details open>
+  <summary>CKAN and WorldBank Metadata Editor</summary>
+I finally asked Claude if it was possible to feed-in or integrate CKAN & WorldBank Metadata Editor.
 
 Research response from Claude:
 
