@@ -114,8 +114,7 @@ Deeper research was conducted to better understand what is possible across NADA 
 
 Research:
 ## <details open>
-  <summary>NADA Metadata Template Creation and Editing</summary>
-  
+  <summary>NADA Metadata Template Creation and Editing</summary>  
 I asked Claude if NADA had reasonable metadata template creation and editing capability.
 
 Research response from Claude:
