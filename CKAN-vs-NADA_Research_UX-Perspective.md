@@ -15,7 +15,8 @@ Our proposed system has to address a number of user requirements which will affe
 - Is it easy to maintain?
 - Is it easy to integrate with other systems?
 - Is it easy to customize?
-- Can the user create custon metadata objects? (specific project requirement)
+- Can the user create custom metadata object templates?
+- Can the user create custom metadata objects? (specific project requirement)
 - Can it be made engaging for portal visitors?
 
 ### Requirements
