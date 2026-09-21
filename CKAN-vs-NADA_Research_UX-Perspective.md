@@ -216,7 +216,7 @@ Bottom line: The Metadata Editor is built to feed NADA specifically. Getting met
 ## Summary
 The following recommendations are put forward after reviewing both tools in relation to their appropriateness for the NT-SDF project and CivicView.
 
-NADA is an attractive modern catalog system that has add on functionality that allows users to build templates.
+NADA is an attractive modern catalog system that has add on functionality that allows users to build A custom metadata object template - it is not flexible IE: it cannot create true variable fields, it just overwrites on the front end meaning the categorisation and search functions will still index and use the original allocations instead of the custom ones.
 HOWEVER it is maintained by one person. This is a high risk consideration and is partly evident in the tool itself: Some help features did not work, some system nav functions were broken and directed to the incorrect places etc.
 
 CKAN, while the native UI is seemingly "old fashioned" the system is a solid, trusted DMS in the space. As it stands, it does not have a flexible user interface editor HOWEVER it is highly flexible in terms of its API connectivity and ability to serve as a database instead of an interface. This gives us a massive range of options in terms of how metadata and resources are served to our users.
